@@ -4,6 +4,8 @@ page ('/carrinho', carrinho );//esta no head
 // page ('/product/:productId', product); product id e variável 
 page();
 
+ 
+
     function index(){
         console.log('ok oi')
         $("main").html(renderIndex());
@@ -17,16 +19,20 @@ page();
         // $("#are-btn").html(addCarrinho(mercadoLivreProducts)); 
     }
     function getProducts( ){
-        return fetch ("https://api.mercadolibre.com/sites/MLB/search?q=pop funko").then((response)=> response.json())
+        return fetch ("https://api.mercadolibre.com/sites/MLB/search?q=popfunko").then((response)=> response.json())
         .then((json)=>json);
      
     }
     function carrinho(){
       
         $("main").html(renderCarrinho());
-        document.getElementById("produto").innerHTML = localStorage.getItem("title");
+        var target = document.getElementById("title").innerHTML;
+        console.log(target)
+        $(target).html('<p>'+ localStorage.getItem("title")+ '</p>');
+ 
         document.getElementById("price").src = localStorage.getItem("price");
-        document.getElementById("id").innerHTML = localStorage.getItem("id");
+        // document.getElementById("valor").innerHTML = "Preço " + localStorage.getItem("valor");
+        // document.getElementById("id").innerHTML = localStorage.getItem("id");
         //esta ´pegando a tag main do html e está renderizando para função renderIndex
      //essa função esta renderizando uma outra função que está no app.js    onde está os templetes 
     }
@@ -42,3 +48,4 @@ page();
     //     return fetch ('').then((response) =>response.json())
     //     .then((json)=>json)
     // }
+ 

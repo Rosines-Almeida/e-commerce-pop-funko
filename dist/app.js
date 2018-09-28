@@ -1,30 +1,99 @@
-//Página index
 function renderIndex(){
-    console.log('ok')
-    return `
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="/dist/img/808fe-img_1341.jpg" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="/dist/img/download.png" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="/dist/img/808fe-img_1341.jpg " alt="Third slide">
-      </div>
+  console.log('ok')
+  return `
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="/dist/img/808fe-img_1341.jpg" alt="First slide">
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="/dist/img/download.png" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="/dist/img/808fe-img_1341.jpg " alt="Third slide">
+    </div>
   </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 `
 }
+
+function renderProductsList(products) {
+  // console.log(products.results);
+   
+      var docs = products.results; //a apartir do respons está acessando a api que é um objeto
+      console.log('docs',docs)
+      // exibePosts();
+      return `
+        <div class="area-item"> ${docs.map(docs => 
+          `<div class="item">
+              <h3 id = 'title' class="demo">${docs.title}<h3>
+
+               <img src="${docs.thumbnail}" "width="200" height="200" > 
+               <p class="demo" > R$ ${docs.price}</p>
+               <div id="teste">
+               <button type="button"  id= "btn" class ="demo produto1"
+                onclick="addCarrinho(['${docs.title}' , '${docs.thumbnail}', '${docs.price}', '${docs.id}', '${docs.attributes[0].value_name}'],)"> Adiconar ao carrinho </button> 
+               
+          </div>
+          </div>
+          `).join("")}
+          </div>`
+  }  
+
+  function renderCarrinho () {
+
+    return `
+    <h2> Carrinho de compras</h2>
+    <div class="media">
+    <img id="price" src="productInf" width="200" height="200">  
+    <div class="media-body">
+      <h5 class="mt-0">Produtos adicionados </h5>
+       <p id='main'> Carrinho Vazio  </p>
+       <div id='title'> titulo </div>
+    </div>
+  </div>
+    `
+  }
+  function addCarrinho(produto) {
+
+    productInf = produto; 
+    console.log(productInf)
+    
+    productTitle = productInf[0]
+    // console.log('productTitle', productTitle)
+    productPrice = productInf[1]
+    // console.log('productPrice', productPrice)
+    productValor = productInf[2]
+    // console.log('productValor',productValor) 
+    localStorage.setItem('title', productTitle);
+    localStorage.setItem('price', productPrice);
+    localStorage.setItem('valor', productValor);
+     titleLocal = localStorage.getItem("title");
+ 
+  
+  }
+
+  
+ 
+     
+  
+    // adiciona o novo elemento criado e seu conteúdo ao DOM 
+ 
+  
+   
+   
+  
+ 
+//Página index
+
 
 
 
@@ -51,31 +120,9 @@ function renderIndex(){
 // function renderCard() {}
 
 //Página dos produtosn 
-function renderProductsList(products) {
-    // console.log(products.results);
-     
-        var docs = products.results; //a apartir do respons está acessando a api que é um objeto
-        console.log('docs',docs)
-        // exibePosts();
-        return `
-          <div class="area-item"> ${docs.map(docs => 
-            `<div class="item">
-                <h3 id = 'title' class="demo">${docs.title}<h3>
-
-                 <img src="${docs.thumbnail}" "width="200" height="200" > 
-                 <p class="demo" > R$ ${docs.price}</p>
-                 <div id="teste">
-                 <button type="button"  id= "btn" class ="demo produto1"
-                  onclick="addCarrinho(['${docs.title}' , '${docs.thumbnail}', '${docs.price}', '${docs.id}', '${docs.attributes[0].value_name}'], 
-                  document.getElementById('qtd1'), '2.00', 1)"> Adiconar ao carrinho </button> 
-                 
-            </div>
-            </div>
-             
+  
               
-        `).join("")}
-        </div>`
-}      
+       
 /*  */
 
 /*Carrinho</a> */
@@ -108,44 +155,53 @@ function renderProductsList(products) {
 //       </div>
 //  `
 // }
-function renderCarrinho () {
 
-  return `
-  <h2> Carrinho de compras</h2>
-  <div class="media">
-  <img id="price" src="productInf" "width="200" height="200">  
-  <div class="media-body">
-    <h5 class="mt-0">Produtos adicionados </h5>
-    <p id="produto" > </p>
-    <p class="mb-0">  Condição do produtos: </p>
-    <p class="mb-0"> Informação do vendedor</p>
-    <p class="mb-0"> </p>
-  </div>
-</div>
 
- 
-  `
-}
 
-function addCarrinho(produto) 
-{
 
-  productInf = produto; 
-  console.log(productInf)
+
+
+// function renderCarrinho () {
+
+//   return `
+//   <h2> Carrinho de compras</h2>
+//   <div class="media">
+//   <img id="price" src="productInf" "width="200" height="200">  
+//   <div class="media-body">
+//     <h5 class="mt-0">Produtos adicionados </h5>
+//     <p id ='title2' >   </p>
+//     <p>  valor =   </p>
+//     <p class="mb-0">  Condição do produtos: </p>
+//     <p class="mb-0"> Informação do vendedor</p> 
+
+//     <button onclick="removeItem()">Click me</button>
   
-  productTitle = productInf[0]
-  console.log(productTitle)
-  productPrice = productInf[1]
-  console.log(productPrice)
-  productId = productInf[2]
-  console.log(productId)
+//     <p class="mb-0"> </p>
+//   </div>
+// </div>
+//   `
+// }
  
-  localStorage.setItem('title', productTitle);
-  localStorage.setItem('price', productPrice);
-  localStorage.setItem('id', productId);
  
 
+ 
+
+
+function removeItem (){
+  alert ('item removido');
+  console.log('remove')
+ 
+  localStorage.removeItem('title');
+  localStorage.removeItem('price');
+ localStorage.removeItem('id');
 }
+
+
+
+
+
+ 
+
 
 //  function addCarrinho(produto, qtd, valor, posicao) 
 //  { 
@@ -338,4 +394,4 @@ function addCarrinho(produto)
     // }
        
         //nessa ele usou o map e join
-   
+ 
