@@ -35,7 +35,7 @@ function renderProductsList(products) {
     `<div class="item">
         <h3 id = 'title' class="demo">${docs.title}<h3>
 
-         <img src="${docs.thumbnail}" "width="200" height="200" > 
+         <img src="${docs.thumbnail}" "width="200" height="100" > 
          <p class="demo" > R$ ${docs.price}</p>
          <div id="teste">
          <button type="button"  id= "btn" class ="demo produto1"
@@ -52,7 +52,7 @@ function renderProductsList(products) {
     return `
     <h2> Carrinho de compras</h2>
     <div class="media">
-    <img id="img" src="productImg" "width="200" height="200">  
+    <img id="img" src="productImg" "width="90" height="90">  
     <div class="media-body">
       <h5 class="mt-0">Produtos adicionados </h5>
       <p id="produto" > </p>
