@@ -7,10 +7,10 @@ function renderIndex(){
       <img class="d-block w-100" src="/dist/img/808fe-img_1341.jpg" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="/dist/img/download.png" alt="Second slide">
+      <img class="d-block w-100" src="/dist/img/guns.jpg" alt="Second slide">  
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="/dist/img/808fe-img_1341.jpg " alt="Third slide">
+      <img class="d-block w-100" src="/dist/img/images.jpg " alt="Third slide">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -24,64 +24,81 @@ function renderIndex(){
 </div>
 `
 }
+//index dando certo
+// {/* <div class = "img-index" style = "background-image :url(/dist/img/808fe-img_1341.jpg );">
+
 
 function renderProductsList(products) {
-  // console.log(products.results);
-   
-      var docs = products.results; //a apartir do respons está acessando a api que é um objeto
-      console.log('docs',docs)
-      // exibePosts();
-      return `
-        <div class="area-item"> ${docs.map(docs => 
-          `<div class="item">
-              <h3 id = 'title' class="demo">${docs.title}<h3>
+  var docs = products.results;  
+  return `
+  <div class="area-item"> ${docs.map(docs => 
+    `<div class="item">
+        <h3 id = 'title' class="demo">${docs.title}<h3>
 
-               <img src="${docs.thumbnail}" "width="200" height="200" > 
-               <p class="demo" > R$ ${docs.price}</p>
-               <div id="teste">
-               <button type="button"  id= "btn" class ="demo produto1"
-                onclick="addCarrinho(['${docs.title}' , '${docs.thumbnail}', '${docs.price}', '${docs.id}', '${docs.attributes[0].value_name}'],)"> Adiconar ao carrinho </button> 
-               
-          </div>
-          </div>
-          `).join("")}
-          </div>`
-  }  
-
+         <img src="${docs.thumbnail}" "width="200" height="200" > 
+         <p class="demo" > R$ ${docs.price}</p>
+         <div id="teste">
+         <button type="button"  id= "btn" class ="demo produto1"
+                    onclick="addCarrinho(['${docs.title}' , '${docs.thumbnail}', '${docs.price}', '${docs.id}', '${docs.attributes[0].value_name}'],)"> Adiconar ao carrinho </button>  
+                    </div>
+                    </div>
+                    `).join("")}
+                    </div>    
+                    `
+                  }  
+  
   function renderCarrinho () {
 
     return `
     <h2> Carrinho de compras</h2>
     <div class="media">
-    <img id="price" src="productInf" width="200" height="200">  
+    <img id="img" src="productImg" "width="200" height="200">  
     <div class="media-body">
       <h5 class="mt-0">Produtos adicionados </h5>
-       <p id='main'> Carrinho Vazio  </p>
-       <div id='title'> titulo </div>
+      <p id="produto" > </p>
+      <p id="price" class="mb-0">   </p>
+      <button onClick="removeItem()" class ="demo" id'remove'> Remover Item </button>
+      
+      <p class="mb-0"> </p>
     </div>
   </div>
     `
   }
+
+  
+   
   function addCarrinho(produto) {
 
     productInf = produto; 
     console.log(productInf)
     
     productTitle = productInf[0]
-    // console.log('productTitle', productTitle)
-    productPrice = productInf[1]
-    // console.log('productPrice', productPrice)
-    productValor = productInf[2]
-    // console.log('productValor',productValor) 
+    console.log(productTitle)
+    productImg = productInf[1]
+    console.log(productImg)
+    productPrice = productInf[2]
+    console.log(productPrice)
+   
     localStorage.setItem('title', productTitle);
+    localStorage.setItem('img', productImg);
     localStorage.setItem('price', productPrice);
-    localStorage.setItem('valor', productValor);
-     titleLocal = localStorage.getItem("title");
  
   
   }
 
+ 
   
+function removeItem (){
+  alert ('item removido');
+  console.log('remove')
+ 
+  localStorage.removeItem('title');
+  localStorage.removeItem('price');
+ localStorage.removeItem('img');
+}
+
+
+
  
      
   
@@ -92,18 +109,14 @@ function renderProductsList(products) {
    
   
  
-//Página index
+ 
 
 
 
 
-//index dando certo
-// {/* <div class = "img-index" style = "background-image :url(/dist/img/808fe-img_1341.jpg );">
+
   
-   
-// <h3> Página do index </h3>
-// <h5> Uma imagem aqui </h5>
-
+ 
 
 
 //  <a class="nav-link"  href="/products">Produtos</a>
@@ -131,70 +144,9 @@ function renderProductsList(products) {
 /* <a class="nav-link"  href="/carrinho"> <button type="button"  id = 'btn' class ="demo produto1" onclick="renderCarrinho('${docs.title}' + '${docs.price}', document.getElementById('qtd1'), '2.00', 1)"> Adiconar e ver carrinho </button> </a>
                 */
  
-//  function addCarrinho(produto, qtd, valor, posicao)
-//  { 
-//   var produtosLocal = produto; 
-//   console.log('addCarrinho', produtosLocal)
-//  localStorage.setItem('produto', produto);
-//  localStorage.setItem("qtd" + posicao, qtd);
-//  valor = valor * qtd;
-//  localStorage.setItem("valor" + posicao, valor);
-//  alert("Produto adicionado ao carrinho!");
-//  return `
-//  <div class="modal fade" id="modalRestautante">
-//         <div class="modal-dialog modal-sm ">
-//           <div class="modal-content px-5 py-2">
-//             <div class="modal-header">
-//               <button type="button" class="close" data-dismiss="modal">&times;</button>
-//             </div>
-//             <h2 id="name-restaurant"></h2>
-//             <p id="type-modal">TIPO: </p>
-//             <p id="description-modal">DESCRIÇÃO: </p>
-//           </div>
-//         </div>
-//       </div>
-//  `
-// }
-
-
-
-
-
-
-// function renderCarrinho () {
-
-//   return `
-//   <h2> Carrinho de compras</h2>
-//   <div class="media">
-//   <img id="price" src="productInf" "width="200" height="200">  
-//   <div class="media-body">
-//     <h5 class="mt-0">Produtos adicionados </h5>
-//     <p id ='title2' >   </p>
-//     <p>  valor =   </p>
-//     <p class="mb-0">  Condição do produtos: </p>
-//     <p class="mb-0"> Informação do vendedor</p> 
-
-//     <button onclick="removeItem()">Click me</button>
-  
-//     <p class="mb-0"> </p>
-//   </div>
-// </div>
-//   `
-// }
- 
- 
-
  
 
 
-function removeItem (){
-  alert ('item removido');
-  console.log('remove')
- 
-  localStorage.removeItem('title');
-  localStorage.removeItem('price');
- localStorage.removeItem('id');
-}
 
 
 
@@ -202,25 +154,13 @@ function removeItem (){
 
  
 
+ 
 
-//  function addCarrinho(produto, qtd, valor, posicao) 
-//  { 
-//   produtosLocal = produto; 
-//   arrayProdutosLocal =  produtosLocal
-//   console.log('renderCarrinho', produtosLocal)
-//  localStorage.setItem('produto', produto);
-//  localStorage.setItem("qtd" + posicao, qtd);
-//  valor = valor * qtd;
-//  localStorage.setItem("valor" + posicao, valor);
-//  document.getElementById("carrinho").innerHTML = localStorage.getItem("produto");
-//  document.getElementById("cart").innerHTML = localStorage.getItem("produto");
-//  alert("Produto adicionado ao carrinho!");
+
+
+
  
- 
-// }
-//pegar todos os dados do botão, salvar em um array 
-//e na página do carrinho separar as informações 
-//
+
  
 
  
