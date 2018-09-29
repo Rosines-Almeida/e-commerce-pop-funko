@@ -1,0 +1,70 @@
+body{
+    font-family: 'Acme', sans-serif;
+    background-color: #f2f2f2 !important;
+   
+}
+/*font do nome*/
+.font-white{
+    color: goldenrod;
+    font-family: 'Acme', sans-serif;
+}
+
+/*pág index*/
+.img-index{  
+    background-color: #cccccc;  
+    height: 600px; 
+    background-position: center;  
+    background-repeat: no-repeat; 
+     
+}
+/* pág dos produtos */
+.area-item {
+    text-align: center !important;
+}
+.img{
+    height: 100%;
+    width: 100%;
+}
+
+ 
+ 
+
+ 
+
+/* itens */
+.area-item {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+  .demo{
+      font-size: 15px;
+  }
+.item{
+  background-color: white;
+  border-bottom: 3px solid gray;
+  width: 300px;
+  margin-right: 50px;
+  margin-left: 50px;
+  margin-top: 25px;
+}
+
+/* botão */
+.btn-color {
+background-color: goldenrod;
+}
+/* area-carrinho */
+.item-card{
+    background-color: white;
+    width: 600px;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 25px;
+
+}
+
+.title-card {
+font-size: 19px;
+color: gray;
+
+}
